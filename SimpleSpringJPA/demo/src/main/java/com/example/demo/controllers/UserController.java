@@ -4,10 +4,16 @@ import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +41,13 @@ public class UserController {
         return  userRepository.findAll();
 
     }
+    @GetMapping("/page/{page}")
+    public ResponseEntity<List<User>> getUsersPaginated(@PathVariable int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<User> userPage = userRepository.findAll(pageable);
+        return ResponseEntity.ok(userPage.getContent());
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
