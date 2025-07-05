@@ -12,7 +12,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  long id;
+    private  Long id;
 
 
     @NotBlank(message = "Name is required")
@@ -29,9 +29,9 @@ public class User {
 
      }
 
-    public  User(long id, String  name , String  email){
+
+    public  User( String  name , String  email){
         this.email= email;
-        this.id=id;
         this.name= name;
     }
 
@@ -48,11 +48,11 @@ public class User {
 
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

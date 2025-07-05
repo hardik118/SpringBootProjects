@@ -23,6 +23,7 @@ public class UserController {
         User savedUser= userRepository.save(user);
         return  ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
+
     @PostMapping("/mockinput")
     public ResponseEntity<List<User>> mockInputData(@Valid @RequestBody List<User> users){
         List<User>  inputUserlist= userRepository.saveAll(users);
